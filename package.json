@@ -13,11 +13,12 @@
     "js-util": "./bin/js-util.js"
   },
   "dependencies": {
-    "chai": "^4.2.0",
     "dotenv": "^6.2.0",
-    "is-upper-case": "^1.1.2",
+    "mssql": "^4.3.0"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
     "mocha": "^5.2.0",
-    "mssql": "^4.3.0",
-    "nodemon": "^1.18.8"
+    "nodemon": "^1.18.9"
   }
 }
