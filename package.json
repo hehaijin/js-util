@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node index.js",
     "test": "mocha",
-    "testwatch":  "nodemon --exec \"mocha\""
+    "testwatch": "nodemon --exec \"mocha\""
   },
   "author": "",
   "license": "ISC",
@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "dotenv": "^6.2.0",
+    "json-schema-generator": "^2.0.6",
     "mssql": "^4.3.0"
   },
   "devDependencies": {
