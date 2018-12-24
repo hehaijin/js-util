@@ -1,0 +1,63 @@
+CREATE PROCEDURE admin.updateInsco 
+    @InsuranceCode varchar(50),
+	@InsuranceName varchar(100) = NULL,
+	@AddressLine1 varchar(50) = NULL,
+	@AddressLine2 varchar(50) = NULL,
+	@City varchar(50) = NULL,
+	@State varchar(50) = NULL,
+	@Zip varchar(50) = NULL,
+	@Phone varchar(50) = NULL,
+	@VendorNumber varchar(50) = NULL,
+	@ClearingHouseID varchar(200) = NULL,
+	@AssignmentFlag varchar(50) = NULL,
+	@PPOflag varchar(50) = NULL,
+	@PPOnumber varchar(50) = NULL,
+	@HMOflag varchar(50) = NULL,
+	@HMOcode varchar(50) = NULL,
+	@ClearinghouseMedia varchar(50) = NULL,
+	@Comments varchar(500) = NULL,
+	@inscoID int,
+	@Inserted datetime = NULL,
+	@Updated datetime = NULL,
+	@Deleted datetime = NULL,
+	@InsertedUsername varchar(50) = NULL,
+	@UpdatedUsername varchar(50) = NULL,
+	@DeletedUsername varchar(50) = NULL,
+	@PrimaryOnly bit = NULL,
+	@SecondaryOnly bit = NULL
+AS
+BEGIN
+UPDATE FIN.insco 
+SET
+    [InsuranceCode] = CASE WHEN @InsuranceCode IS NULL THEN InsuranceCode ELSE @InsuranceCode END,
+	[InsuranceName] = CASE WHEN @InsuranceName IS NULL THEN InsuranceName ELSE @InsuranceName END,
+	[AddressLine1] = CASE WHEN @AddressLine1 IS NULL THEN AddressLine1 ELSE @AddressLine1 END,
+	[AddressLine2] = CASE WHEN @AddressLine2 IS NULL THEN AddressLine2 ELSE @AddressLine2 END,
+	[City] = CASE WHEN @City IS NULL THEN City ELSE @City END,
+	[State] = CASE WHEN @State IS NULL THEN State ELSE @State END,
+	[Zip] = CASE WHEN @Zip IS NULL THEN Zip ELSE @Zip END,
+	[Phone] = CASE WHEN @Phone IS NULL THEN Phone ELSE @Phone END,
+	[VendorNumber] = CASE WHEN @VendorNumber IS NULL THEN VendorNumber ELSE @VendorNumber END,
+	[ClearingHouseID] = CASE WHEN @ClearingHouseID IS NULL THEN ClearingHouseID ELSE @ClearingHouseID END,
+	[AssignmentFlag] = CASE WHEN @AssignmentFlag IS NULL THEN AssignmentFlag ELSE @AssignmentFlag END,
+	[PPOflag] = CASE WHEN @PPOflag IS NULL THEN PPOflag ELSE @PPOflag END,
+	[PPOnumber] = CASE WHEN @PPOnumber IS NULL THEN PPOnumber ELSE @PPOnumber END,
+	[HMOflag] = CASE WHEN @HMOflag IS NULL THEN HMOflag ELSE @HMOflag END,
+	[HMOcode] = CASE WHEN @HMOcode IS NULL THEN HMOcode ELSE @HMOcode END,
+	[ClearinghouseMedia] = CASE WHEN @ClearinghouseMedia IS NULL THEN ClearinghouseMedia ELSE @ClearinghouseMedia END,
+	[Comments] = CASE WHEN @Comments IS NULL THEN Comments ELSE @Comments END,
+	[inscoID] = CASE WHEN @inscoID IS NULL THEN inscoID ELSE @inscoID END,
+	[Inserted] = CASE WHEN @Inserted IS NULL THEN Inserted ELSE @Inserted END,
+	[Updated] = CASE WHEN @Updated IS NULL THEN Updated ELSE @Updated END,
+	[Deleted] = CASE WHEN @Deleted IS NULL THEN Deleted ELSE @Deleted END,
+	[InsertedUsername] = CASE WHEN @InsertedUsername IS NULL THEN InsertedUsername ELSE @InsertedUsername END,
+	[UpdatedUsername] = CASE WHEN @UpdatedUsername IS NULL THEN UpdatedUsername ELSE @UpdatedUsername END,
+	[DeletedUsername] = CASE WHEN @DeletedUsername IS NULL THEN DeletedUsername ELSE @DeletedUsername END,
+	[PrimaryOnly] = CASE WHEN @PrimaryOnly IS NULL THEN PrimaryOnly ELSE @PrimaryOnly END,
+	[SecondaryOnly] = CASE WHEN @SecondaryOnly IS NULL THEN SecondaryOnly ELSE @SecondaryOnly END   
+WHERE
+    InsuranceCode= @InsuranceCode
+	AND
+	inscoID= @inscoID;
+
+END
