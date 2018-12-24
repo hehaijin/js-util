@@ -35,7 +35,7 @@ class SwaggerAPI {
   addServer(url, description) {
     if (!util.isArray(this.swaggerjson.servers)) throw new Error('Server must be a array');
     let servers = this.swaggerjson.servers;
-    servers.push({url, description});
+    servers.push({ url, description });
   }
 
   /**
@@ -63,7 +63,7 @@ class SwaggerAPI {
   }
 
   addResponse(path, method, code, description) {
-    this.swaggerjson.paths[path][method].responses[code] = {description};
+    this.swaggerjson.paths[path][method].responses[code] = { description };
   }
 
   /**
@@ -142,6 +142,74 @@ class SwaggerAPI {
         [name]: schema
       }
     }
+  }
+
+
+
+  /**
+   * check if a route already exists for this request.
+   * turns out much more complex than I thought.
+   * 
+   * @param {} req 
+   */
+  findMatchingRoute(req) {
+    const url = req.url;
+    const method = req.method;
+    const query = req.query;
+    for(const key of Object.keys(this.swaggerjson.paths)){
+      if(this.isRouteMatch(req,key)) return key;
+    }
+    return undefined;
+  }
+
+
+  /**
+   * check if route match
+   * @param {*} req // req.url:the url might have query string
+   * @param {*} pathURL  // this url is without path string, and might have path parameter like /{id}
+   */
+  isRouteMatch(req, pathURL) {
+    // using req.path we do not need to check req.query
+    if (path.indexOf('{') === -1 && path.indexOf('}') === -1) {
+      return path === req.path;
+    } else {
+      // split with '/' and check each part.
+      // omit parts with '{}'
+      const splits1 = path.split('/');
+      const splits1 = req.path.split('/');
+      if (splits1.length !== splits2.length) return false;
+      for (var i in splits1) {
+        if (splits1[i].indexOf('{') === -1 && splits1[i] !== splits[i]) return false;
+        return true;
+      }
+    }
+  }
+
+
+
+  autoCapture(req, res, next) {
+
+    const url = req.url;
+    const method = req.method;
+    const headers = req.headers;
+    const body = req.body;
+    const bodySchema = schemaGenerator(body);
+
+    if (!this.findMatchingRoute(req)) {
+      // create new route
+
+
+    } else {
+      // check method also match
+
+
+      // no matching method
+
+
+    }
+
+
+    next();
   }
 
 }
