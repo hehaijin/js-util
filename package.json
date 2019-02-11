@@ -14,6 +14,7 @@
     "js-util": "./bin/js-util.js"
   },
   "dependencies": {
+    "cheerio": "^1.0.0-rc.2",
     "dotenv": "^6.2.0",
     "json-schema-generator": "^2.0.6",
     "mssql": "^4.3.0"
